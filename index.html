@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qira Boys' Secondary School</title>
+<link rel="icon" href="logo.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#145C43;        /* أخضر غامق - النمو والعلم */
+    --primary-dark:#0C3D2C;
+    --primary-darker:#082A1E;
+    --gold:#C9973B;           /* ذهبي - التميّز */
+    --gold-light:#E8C77A;
+    --flag-red:#A32638;       /* أحمر العلم - للتنبيهات */
+    --ink:#1E2A26;
+    --muted:#5B6B65;
+    --paper:#FFFFFF;
+    --paper-soft:#F7F6F1;
+    --line:#E6E4D9;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow-sm:0 6px 18px rgba(12,61,44,.08);
+    --shadow-md:0 16px 36px rgba(12,61,44,.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.85;
+  }
+  h1,h2,h3,.brand-name,.logo-mark{font-family:'Cairo',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px;}
+
+  /* --- زخرفة تطريز فلسطيني (توقيع التصميم) --- */
+  .tatreez-divider{
+    height:14px;width:100%;
+    background-image:
+      linear-gradient(45deg, var(--gold) 25%, transparent 25%, transparent 75%, var(--gold) 75%),
+      linear-gradient(45deg, var(--gold) 25%, transparent 25%, transparent 75%, var(--gold) 75%),
+      linear-gradient(45deg, var(--flag-red) 25%, transparent 25%, transparent 75%, var(--flag-red) 75%);
+    background-position:0 0, 7px 7px, -7px 0;
+    background-size:14px 14px;
+    opacity:.9;
+  }
+  .tatreez-divider.small{height:8px;background-size:10px 10px;background-position:0 0,5px 5px,-5px 0;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:.4px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--gold);display:inline-block;}
+
+  /* --- الهيدر --- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .25s;
+  }
+  header.scrolled{box-shadow:0 4px 18px rgba(12,61,44,.08);}
+  .header-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 24px;gap:20px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo-mark{
+    width:56px;height:56px;flex:none;
+    border-radius:50%;object-fit:cover;
+    border:2px solid var(--gold-light);
+    box-shadow:var(--shadow-sm);
+  }
+  .brand-text .brand-name{
+    font-size:1.12rem;font-weight:800;color:var(--primary-dark);
+    line-height:1.3;
+  }
+  .brand-text .brand-motto{
+    font-size:.78rem;color:var(--gold);font-weight:600;
+    margin-top:2px;
+  }
+  nav ul{display:flex;gap:4px;}
+  nav a{
+    position:relative;
+    font-weight:600;font-size:.93rem;color:var(--ink);
+    padding:10px 14px;border-radius:8px;transition:.2s;
+  }
+  nav a:hover, nav a:focus-visible{background:var(--paper-soft);color:var(--primary);}
+  .nav-link{position:relative;}
+  .notif-dot{
+    position:absolute;top:6px;left:6px;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--flag-red);
+    box-shadow:0 0 0 0 rgba(163,38,56,.6);
+    animation:pulse-dot 1.8s infinite;
+  }
+  @keyframes pulse-dot{
+    0%{box-shadow:0 0 0 0 rgba(163,38,56,.55);}
+    70%{box-shadow:0 0 0 8px rgba(163,38,56,0);}
+    100%{box-shadow:0 0 0 0 rgba(163,38,56,0);}
+  }
+  .menu-toggle{
+    display:none;background:none;border:none;cursor:pointer;
+    flex-direction:column;gap:5px;padding:6px;
+  }
+  .menu-toggle span{width:26px;height:3px;background:var(--primary-dark);border-radius:3px;transition:.2s;}
+
+  /* --- الهيرو --- */
+  .hero{
+    position:relative;color:#fff;overflow:hidden;
+    padding:64px 24px 0;
+    background:
+      linear-gradient(180deg, rgba(8,42,30,.90) 0%, rgba(12,61,44,.94) 55%, var(--primary-dark) 100%),
+      url('cover.jpg');
+    background-size:cover;background-position:center 30%;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 22px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 22px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:760px;margin:0 auto;text-align:center;padding-bottom:56px;}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--gold-light);font-weight:700;font-size:.85rem;
+    border:1px solid rgba(232,199,122,.45);padding:7px 18px;border-radius:30px;
+    margin-bottom:22px;background:rgba(255,255,255,.05);
+  }
+  .hero h1{
+    font-size:clamp(2rem,4.6vw,3.1rem);font-weight:900;line-height:1.4;
+    margin-bottom:16px;text-wrap:balance;
+  }
+  .hero p.lead{
+    font-size:1.05rem;color:#DCEAE3;max-width:600px;margin:0 auto;
+  }
+  .hero-stats{
+    position:relative;max-width:840px;margin:38px auto 0;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);
+    backdrop-filter:blur(6px);
+    transform:translateY(50%);
+    box-shadow:var(--shadow-md);
+  }
+  .hero-stats .hs{
+    text-align:center;padding:22px 10px;
+    border-left:1px solid rgba(255,255,255,.14);
+  }
+  .hero-stats .hs:last-child{border-left:none;}
+  .hero-stats .hs b{display:block;font-size:1.5rem;font-weight:900;color:var(--gold-light);font-family:'Cairo',sans-serif;}
+  .hero-stats .hs span{font-size:.78rem;color:#CFE3D9;}
+
+  /* --- الأقسام --- */
+  section{padding:70px 24px;}
+  #home + .tatreez-divider{margin-top:56px;}
+  .section-inner{max-width:1180px;margin:0 auto;}
+  .section-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    margin-bottom:38px;flex-wrap:wrap;gap:14px;
+    border-bottom:2px solid var(--line);padding-bottom:20px;
+  }
+  .section-head h2{font-size:1.75rem;font-weight:800;color:var(--primary-dark);margin-top:6px;}
+  .soft{background:var(--paper-soft);}
+
+  /* --- نشيد المدرسة (صوت) --- */
+  .audio-wrap{
+    max-width:700px;margin:0 auto;
+    display:flex;align-items:center;gap:22px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow-sm);
+  }
+  .audio-icon{
+    flex:none;width:64px;height:64px;border-radius:50%;
+    background:var(--primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.7rem;
+  }
+  .audio-info{flex:1;min-width:0;}
+  .audio-title{font-weight:700;color:var(--primary-dark);font-family:'Cairo',sans-serif;margin-bottom:10px;}
+  .audio-info audio{width:100%;}
+  @media (max-width:520px){
+    .audio-wrap{flex-direction:column;text-align:center;}
+  }
+
+  /* --- شبكة صور المدرسة --- */
+  .photo-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;
+  }
+  .photo-item{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s;
+  }
+  .photo-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--primary);}
+  .photo-item img{width:100%;height:210px;object-fit:cover;display:block;}
+  .photo-item figcaption{padding:14px 16px;font-size:.85rem;color:var(--muted);text-align:center;}
+
+  /* --- بطاقات الأخبار --- */
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+  .news-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:.25s;display:flex;flex-direction:column;
+    box-shadow:var(--shadow-sm);
+  }
+  .news-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--primary);}
+  .news-thumb{
+    height:150px;position:relative;
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.2rem;
+  }
+  .news-thumb::after{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 2px, transparent 2px 18px);
+  }
+  .news-body{padding:22px;flex:1;display:flex;flex-direction:column;gap:10px;}
+  .news-date{color:var(--gold);font-weight:700;font-size:.8rem;}
+  .news-body h3{font-size:1.1rem;font-weight:700;color:var(--primary-dark);}
+  .news-body p{color:var(--muted);font-size:.92rem;flex:1;}
+  .news-link{color:var(--primary);font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:4px;transition:.2s;}
+  .news-link:hover{gap:8px;}
+
+  /* --- شركاؤنا --- */
+  .partners-grid{
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+    gap:48px;margin-top:36px;
+  }
+  .partner-card{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    text-align:center;
+  }
+  .partner-card img{
+    width:110px;height:110px;object-fit:contain;border-radius:50%;
+    background:var(--paper);border:2px solid var(--line);
+    box-shadow:var(--shadow-sm);padding:10px;
+  }
+  .partner-card span{font-size:.9rem;font-weight:700;color:var(--primary-dark);max-width:180px;}
+
+  /* --- الإعلانات --- */
+  .announce-list{display:flex;flex-direction:column;gap:16px;}
+  .announce-item{
+    display:flex;gap:18px;align-items:flex-start;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 24px;border-right:4px solid var(--primary);
+    transition:.2s;
+  }
+  .announce-item:hover{box-shadow:var(--shadow-sm);}
+  .announce-item.urgent{border-right-color:var(--flag-red);background:#FBF0F1;}
+  .announce-icon{
+    flex:none;width:46px;height:46px;border-radius:10px;
+    background:var(--primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;
+  }
+  .announce-item.urgent .announce-icon{background:var(--flag-red);}
+  .announce-content h3{font-size:1.05rem;font-weight:700;color:var(--primary-dark);margin-bottom:4px;}
+  .announce-content .meta{font-size:.78rem;color:var(--muted);margin-bottom:6px;}
+  .announce-content p{color:var(--ink);font-size:.92rem;}
+  .badge{
+    display:inline-block;background:var(--flag-red);color:#fff;font-size:.72rem;font-weight:700;
+    padding:3px 10px;border-radius:20px;margin-left:8px;
+  }
+
+  /* --- عن المدرسة --- */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .about-grid p{color:var(--muted);margin-bottom:14px;}
+  .stat-row{display:flex;gap:30px;margin-top:24px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat b{display:block;font-size:1.7rem;color:var(--primary);font-weight:900;font-family:'Cairo',sans-serif;}
+  .stat span{font-size:.8rem;color:var(--muted);}
+  .about-panel{
+    background:var(--primary-dark);color:#fff;border-radius:var(--radius);
+    padding:36px;position:relative;overflow:hidden;box-shadow:var(--shadow-md);
+  }
+  .about-panel::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 20px);
+  }
+  .about-panel h3{color:var(--gold-light);font-size:1.2rem;margin-bottom:16px;position:relative;}
+  .about-panel ul{position:relative;}
+  .about-panel ul li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.93rem;display:flex;gap:10px;align-items:center;}
+  .about-panel ul li:last-child{border:none;}
+
+  /* --- تواصل معنا / فوتر --- */
+  footer{background:var(--primary-darker);color:#EAF2ED;}
+  .footer-top{
+    max-width:1180px;margin:0 auto;padding:60px 24px 40px;
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:44px;
+  }
+  .footer-brand{display:flex;gap:14px;align-items:center;margin-bottom:16px;}
+  .footer-brand img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);}
+  .footer-brand .brand-name{color:#fff;font-size:1.05rem;font-weight:800;}
+  .footer-brand .brand-motto{color:var(--gold-light);font-size:.78rem;font-weight:600;}
+  .footer-col h4{color:var(--gold-light);font-size:.95rem;font-weight:700;margin-bottom:18px;letter-spacing:.3px;}
+  .contact-item{display:flex;gap:10px;margin-bottom:16px;font-size:.9rem;color:#DCEAE3;}
+  .contact-item .ic{
+    flex:none;width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;font-size:1rem;
+  }
+  .social-links{display:flex;gap:10px;margin-top:18px;}
+  .social-links a{
+    width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;transition:.2s;
+  }
+  .social-links a:hover{background:var(--gold-light);}
+  .social-links a svg{width:18px;height:18px;fill:#DCEAE3;transition:.2s;}
+  .social-links a:hover svg{fill:#123527;}
+  .footer-col ul li{margin-bottom:12px;font-size:.9rem;}
+  .footer-col ul a{transition:.2s;}
+  .footer-col ul a:hover{color:var(--gold-light);padding-right:4px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+    text-align:center;padding:18px 24px;font-size:.82rem;color:#9FB8AC;
+  }
+
+  /* --- ظهور تدريجي عند التمرير --- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .hero-stats{grid-template-columns:1fr;transform:translateY(30%);}
+    .hero-stats .hs{border-left:none;border-bottom:1px solid rgba(255,255,255,.14);}
+    .hero-stats .hs:last-child{border-bottom:none;}
+  }
+  @media (max-width:760px){
+    nav{position:absolute;top:100%;right:0;left:0;background:var(--paper);
+      border-bottom:1px solid var(--line);display:none;box-shadow:var(--shadow-md);}
+    nav.open{display:block;}
+    nav ul{flex-direction:column;padding:10px 20px 20px;}
+    .menu-toggle{display:flex;}
+    header{position:relative;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="header-inner">
+    <div class="brand">
+      <img class="logo-mark" src="logo.jpg" alt="شعار مدرسة ذكور قيرة الثانوية">
+      <div class="brand-text">
+        <div class="brand-name">مدرسة ذكور قيرة الثانوية</div>
+        <div class="brand-motto">نُنمّي العقول ونبني الأوطان</div>
+      </div>
+    </div>
+
+    <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false" onclick="toggleNav(this)">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#anthem">النشيد</a></li>
+        <li><a href="#gallery">ألبوم الصور</a></li>
+        <li><a href="#news" class="nav-link">الأخبار<span class="notif-dot"></span></a></li>
+        <li><a href="#announcements">الإعلانات</a></li>
+        <li><a href="#about">عن المدرسة</a></li>
+        <li><a href="#partners">شركاؤنا</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="tatreez-divider small"></div>
+</header>
+
+<!-- الهيرو -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <span class="hero-badge">🎓 تأسست عام 2009</span>
+    <h1>نُنمّي العقول ونبني الأوطان</h1>
+    <p class="lead">صرحٌ تربوي يجمع بين أصالة القيم وحداثة التعليم، نعمل على إعداد جيلٍ واعٍ قادر على البناء والعطاء.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="hs"><b>2009</b><span>عام التأسيس</span></div>
+    <div class="hs"><b>+90</b><span>طالب</span></div>
+    <div class="hs"><b>+20</b><span>معلم ومعلمة</span></div>
+  </div>
+</section>
+<div class="tatreez-divider"></div>
+
+<!-- نشيد المدرسة -->
+<section id="anthem">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">استمع إلينا</span>
+        <h2>نشيد مدرسة قيرة الثانوية</h2>
+      </div>
+    </div>
+    <div class="audio-wrap reveal">
+      <div class="audio-icon">🎵</div>
+      <div class="audio-info">
+        <div class="audio-title">نشيد مدرسة قيرة الثانوية - 2026</div>
+        <audio controls preload="metadata">
+          <source src="anthem.mp3" type="audio/mpeg">
+          متصفحك لا يدعم تشغيل الملف الصوتي.
+        </audio>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="tatreez-divider"></div>
+
+<!-- ألبوم الصور -->
+<section id="gallery" class="soft">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">افخر بمدرستك</span>
+        <h2>لقطات من حياة المدرسة</h2>
+      </div>
+    </div>
+    <div class="photo-grid">
+      <figure class="photo-item reveal">
+        <img src="gallery-1.jpg" alt="حملة توعية لمكافحة التنمر والعنف">
+        <figcaption>حملة توعوية لمكافحة التنمر والعنف</figcaption>
+      </figure>
+      <figure class="photo-item reveal">
+        <img src="gallery-3.jpg" alt="مسيرة طلابية داعمة لفلسطين">
+        <figcaption>مسيرة طلابية تضامنية</figcaption>
+      </figure>
+      <figure class="photo-item reveal">
+        <img src="gallery-4.jpg" alt="فرقة الكشافة في طابور الصباح">
+        <figcaption>فرقة الكشافة في طابور الصباح</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<div class="tatreez-divider"></div>
+
+<!-- الأخبار -->
+<section id="news">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">آخر المستجدات</span>
+        <h2>الأخبار</h2>
+      </div>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card reveal">
+        <div class="news-thumb">📚</div>
+        <div class="news-body">
+          <span class="news-date">٢ آب ٢٠٢٦</span>
+          <h3>انطلاق التسجيل للعام الدراسي الجديد</h3>
+          <p>تعلن إدارة المدرسة عن فتح باب التسجيل للطلاب الجدد، على أن يتم التسجيل في مكتب الإدارة خلال أوقات الدوام الرسمي.</p>
+          <a class="news-link" href="#">التفاصيل ←</a>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-thumb">🏆</div>
+        <div class="news-body">
+          <span class="news-date">٢٨ تموز ٢٠٢٦</span>
+          <h3>تفوق طلاب المدرسة في مسابقة العلوم</h3>
+          <p>حقق فريق المدرسة المركز الأول على مستوى المحافظة في مسابقة العلوم والابتكار، تهانينا لطلابنا ومعلميهم.</p>
+          <a class="news-link" href="#">التفاصيل ←</a>
+        </div>
+      </article>
+
+      <article class="news-card reveal">
+        <div class="news-thumb">🎓</div>
+        <div class="news-body">
+          <span class="news-date">١٥ تموز ٢٠٢٦</span>
+          <h3>حفل تكريم الطلبة الأوائل</h3>
+          <p>أقامت المدرسة حفلاً لتكريم الطلبة الأوائل في الثانوية العامة، بحضور مدير المدرسة وأعضاء الهيئة التدريسية.</p>
+          <a class="news-link" href="#">التفاصيل ←</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- الإعلانات -->
+<section id="announcements" class="soft">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">تنويه</span>
+        <h2>الإعلانات</h2>
+      </div>
+    </div>
+
+    <div class="announce-list">
+      <div class="announce-item urgent reveal">
+        <div class="announce-icon">!</div>
+        <div class="announce-content">
+          <h3><span class="badge">هام</span> تعديل موعد استقبال المراجعين</h3>
+          <div class="meta">نُشر بتاريخ ١٧ آب ٢٠٢٦</div>
+          <p>تعلمكم إدارة مدرسة ذكور قيرة الثانوية بأنه سيتم استقبال المراجعين ممن لديهم معاملات خاصة بالمدرسة، وذلك يوم غدٍ الأثنين بدلاً من الثلاثاء، من الساعة التاسعة صباحًا حتى الساعة الثانية عشرة ظهرًا.<br>
+          راجين من المعنيين الحضور وتسليم الأوراق والوثائق اللازمة خلال الفترة المحددة.<br>
+          مع الاحترام والتقدير،،،،<br>
+          مدير المدرسة: أ. عبد السلام حايك</p>
+        </div>
+      </div>
+
+      <div class="announce-item urgent reveal">
+        <div class="announce-icon">!</div>
+        <div class="announce-content">
+          <h3><span class="badge">هام</span> تعديل موعد الدوام المدرسي</h3>
+          <div class="meta">نُشر بتاريخ ٥ آب ٢٠٢٦</div>
+          <p>يبدأ الدوام المدرسي اعتباراً من الأسبوع القادم الساعة ٧:٣٠ صباحاً، يرجى الالتزام بالمواعيد.</p>
+        </div>
+      </div>
+
+      <div class="announce-item reveal">
+        <div class="announce-icon">📄</div>
+        <div class="announce-content">
+          <h3>اجتماع أولياء الأمور</h3>
+          <div class="meta">نُشر بتاريخ ٣٠ تموز ٢٠٢٦</div>
+          <p>تدعو إدارة المدرسة أولياء الأمور لحضور الاجتماع الدوري يوم الخميس القادم في قاعة المدرسة.</p>
+        </div>
+      </div>
+
+      <div class="announce-item reveal">
+        <div class="announce-icon">🏆</div>
+        <div class="announce-content">
+          <h3>فعاليات ومسابقات</h3>
+          <div class="meta">نُشر بتاريخ ٢٦ تموز ٢٠٢٦</div>
+          <p>تنظم المدرسة سلسلة من الفعاليات والمسابقات الثقافية والرياضية والعلمية لطلابنا خلال الفترة القادمة، وسيتم الإعلان عن التفاصيل والجوائز قريباً.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- عن المدرسة -->
+<section id="about">
+  <div class="section-inner about-grid">
+    <div class="reveal">
+      <span class="eyebrow">من نحن</span>
+      <h2 style="font-size:1.75rem;font-weight:800;color:var(--primary-dark);margin:10px 0 18px;">عن مدرسة ذكور قيرة الثانوية</h2>
+      <p>تُعنى مدرستنا بإعداد جيل من الطلاب المتميزين علمياً وأخلاقياً، من خلال بيئة تعليمية محفزة وكوادر تربوية مؤهلة، إيماناً منا بأن العلم هو أساس بناء الأوطان.</p>
+      <p>نسعى إلى ترسيخ القيم الوطنية والإنسانية لدى طلابنا، وتزويدهم بالمهارات التي تؤهلهم لمواجهة تحديات المستقبل بثقة واقتدار.</p>
+      <div class="stat-row">
+        <div class="stat"><b>+90</b><span>طالب</span></div>
+        <div class="stat"><b>+20</b><span>معلم ومعلمة</span></div>
+        <div class="stat"><b>+20</b><span>عام من العطاء</span></div>
+      </div>
+    </div>
+    <div class="about-panel reveal">
+      <h3>رسالة إدارة المدرسة</h3>
+      <ul>
+        <li> مدير المدرسة: أ. عبد السلام حايك</li>
+        <li> رؤيتنا: التميّز التربوي والتعليمي</li>
+        <li> رسالتنا: بناء جيل واعٍ ومسؤول</li>
+        <li> قيمنا: الانتماء، الاجتهاد، الاحترام</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="tatreez-divider"></div>
+
+<!-- شركاؤنا -->
+<section id="partners" class="soft">
+  <div class="section-inner">
+    <div class="section-head reveal" style="text-align:center;justify-content:center;">
+      <div>
+        <span class="eyebrow">بالشراكة مع</span>
+        <h2>شركاؤنا</h2>
+      </div>
+    </div>
+    <div class="partners-grid reveal">
+      <div class="partner-card">
+        <img src="logo.jpg" alt="شعار مدرسة ذكور قيرة الثانوية">
+        <span>مدرسة ذكور قيرة الثانوية</span>
+      </div>
+      <div class="partner-card">
+        <img src="partner-council.jpg" alt="شعار مجلس قروي قيرة">
+        <span>مجلس قروي قيرة</span>
+      </div>
+      <div class="partner-card">
+        <img src="partner-palestine.jpg" alt="شعار مديرية التربية والتعليم سلفيت">
+        <span>مديرية التربية والتعليم سلفيت</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- التواصل / الفوتر -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="شعار مدرسة ذكور قيرة الثانوية">
+        <div>
+          <div class="brand-name">مدرسة ذكور قيرة الثانوية</div>
+          <div class="brand-motto">نُنمّي العقول ونبني الأوطان</div>
+        </div>
+      </div>
+      <p style="color:#B9CCC2;font-size:.88rem;max-width:340px;">صرح تعليمي يجمع بين الأصالة والحداثة، نفخر بأبنائنا الطلاب ونعمل معاً من أجل مستقبل أفضل.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#anthem">النشيد</a></li>
+        <li><a href="#gallery">ألبوم الصور</a></li>
+        <li><a href="#news">الأخبار</a></li>
+        <li><a href="#announcements">الإعلانات</a></li>
+        <li><a href="#about">عن المدرسة</a></li>
+        <li><a href="#partners">شركاؤنا</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>تواصل معنا</h4>
+      <div class="contact-item">
+        <span class="ic">👤</span>
+        <span>مدير المدرسة<br><strong>أ. عبد السلام حايك</strong></span>
+      </div>
+      <div class="contact-item">
+        <span class="ic">📞</span>
+        <span>الهاتف<br><strong dir="ltr">0562502562</strong></span>
+      </div>
+      <div class="contact-item">
+        <span class="ic">✉️</span>
+        <span>البريد الإلكتروني<br><strong dir="ltr">qiraschool2026@gmail.com</strong></span>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=100086428272172&locale=ar_AR" target="_blank" rel="noopener" aria-label="فيسبوك">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.197 2.238.197v2.475h-1.26c-1.243 0-1.63.775-1.63 1.57v1.888h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/qiraschool2026/" target="_blank" rel="noopener" aria-label="انستغرام">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.256 1.216.6 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.05 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.05-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.01 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.065.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.637-.248 1.363-.415 2.428-.465C8.944 2.01 9.283 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5ZM17.5 5.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tatreez-divider small"></div>
+  <div class="footer-bottom">
+    جميع الحقوق محفوظة © مدرسة ذكور قيرة الثانوية ٢٠٢٦
+  </div>
+</footer>
+
+<script>
+  function toggleNav(btn){
+    var nav = document.getElementById('mainNav');
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  // ظل خفيف للهيدر عند التمرير
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // إغلاق القائمة عند اختيار رابط (على الجوال)
+  document.querySelectorAll('#mainNav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.getElementById('mainNav').classList.remove('open');
+    });
+  });
+
+  // ظهور تدريجي للعناصر عند التمرير
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
