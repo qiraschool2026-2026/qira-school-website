@@ -233,6 +233,13 @@
   .photo-item figcaption{padding:14px 16px;font-size:.85rem;color:var(--muted);text-align:center;}
 
   /* --- بطاقات الأخبار --- */
+  .visit-text{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 26px;margin-bottom:26px;box-shadow:var(--shadow-sm);
+  }
+  .visit-text p{color:var(--ink);font-size:.98rem;line-height:2;margin-bottom:10px;}
+  .visit-text p:last-child{margin-bottom:0;}
+  .visit-text strong{color:var(--primary-dark);}
   .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
   .news-card{
     background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
@@ -309,30 +316,6 @@
     display:inline-block;background:var(--flag-red);color:#fff;font-size:.72rem;font-weight:700;
     padding:3px 10px;border-radius:20px;margin-left:8px;
   }
-
-  /* --- الشكر والتبرعات --- */
-  .thanks-list{display:flex;flex-direction:column;gap:34px;}
-  .thanks-card{
-    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
-    padding:28px 30px;box-shadow:var(--shadow-sm);border-right:4px solid var(--gold);
-  }
-  .thanks-card h3{
-    color:var(--primary-dark);font-size:1.15rem;font-weight:800;
-    margin-bottom:14px;display:flex;align-items:center;gap:10px;
-  }
-  .thanks-card h3::before{content:"🌟";font-size:1.05rem;}
-  .thanks-card p{color:var(--ink);font-size:.95rem;margin-bottom:10px;}
-  .thanks-card p:last-of-type{margin-bottom:0;}
-  .thanks-sign{color:var(--gold);font-weight:700;font-size:.92rem;margin-top:12px;}
-  .thanks-photos{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;
-    margin:18px 0;
-  }
-  .thanks-photos img{
-    width:100%;height:190px;object-fit:cover;border-radius:var(--radius-sm);
-    border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:.25s;
-  }
-  .thanks-photos img:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
 
   /* --- عن المدرسة --- */
   .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
@@ -439,9 +422,9 @@
         <li><a href="#home">الرئيسية</a></li>
         <li><a href="#anthem">النشيد</a></li>
         <li><a href="#gallery">ألبوم الصور</a></li>
+        <li><a href="#visits">زيارات</a></li>
         <li><a href="#news" class="nav-link">الأخبار<span class="notif-dot"></span></a></li>
         <li><a href="#announcements">الإعلانات</a></li>
-        <li><a href="#thanks">شكر وتبرعات</a></li>
         <li><a href="#about">عن المدرسة</a></li>
         <li><a href="#partners">شركاؤنا</a></li>
         <li><a href="#contact">تواصل معنا</a></li>
@@ -514,6 +497,38 @@
       <figure class="photo-item reveal">
         <img src="gallery-4.jpg" alt="فرقة الكشافة في طابور الصباح">
         <figcaption>فرقة الكشافة في طابور الصباح</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<div class="tatreez-divider"></div>
+
+<!-- زيارات -->
+<section id="visits">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">فخر واعتزاز</span>
+        <h2>زيارات</h2>
+      </div>
+    </div>
+    <div class="visit-text reveal">
+      <p><strong>فخر واعتزاز</strong>، تتشرف إدارة مدرسة ذكور قيرة الثانوية باستقبال مدير مديرية التربية والتعليم سلفيت الأستاذ محمد الاقرع.. إن هذه الزيارة الكريمة التي نعتز بها ونقدّرها، تأتي تأكيدًا على التواصل الدائم والشراكة الفاعلة بين المديرية ومدارسها.</p>
+      <p>ويسعدنا اليوم حضور مدير التربية الطابور الصباحي ومشاركة أبنائنا الطلبة ومعلميهم هذه اللحظات التربوية، والاطلاع عن قرب على مسيرة المدرسة وأنشطتها، فضلًا عن إلقائه كلمة توجيهية لأبنائنا الطلبة، تحمل في مضمونها قيم العلم والانضباط والتميز، وتشكل حافزًا لهم لمواصلة طريق النجاح والعطاء.</p>
+      <p>أهلًا وسهلًا بكم في مدرسة ذكور قيرة الثانوية، وحضوركم بيننا محل تقدير واعتزاز، فمرحبًا بكم بين أبنائكم وزملائكم.</p>
+    </div>
+    <div class="photo-grid">
+      <figure class="photo-item reveal">
+        <img src="visit-1.jpg" alt="استقبال مدير التربية والتعليم في مكتب إدارة المدرسة">
+        <figcaption>استقبال مدير التربية والتعليم سلفيت في مكتب الإدارة</figcaption>
+      </figure>
+      <figure class="photo-item reveal">
+        <img src="visit-2.jpg" alt="مدير التربية والتعليم في الطابور الصباحي">
+        <figcaption>مشاركة مدير التربية في الطابور الصباحي</figcaption>
+      </figure>
+      <figure class="photo-item reveal">
+        <img src="visit-3.jpg" alt="الطلبة في الطابور الصباحي أثناء الزيارة">
+        <figcaption>الطلبة والمعلمون خلال الزيارة</figcaption>
       </figure>
     </div>
   </div>
@@ -604,53 +619,6 @@
     </div>
   </div>
 </section>
-<div class="tatreez-divider"></div>
-
-<!-- الشكر والتبرعات -->
-<section id="thanks">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <div>
-        <span class="eyebrow">عرفانًا بالجميل</span>
-        <h2>شكر وتبرعات</h2>
-      </div>
-    </div>
-
-    <div class="thanks-list">
-      <div class="thanks-card reveal">
-        <h3>شكر وعرفان</h3>
-        <p>تتقدم إدارة مدرسة ذكور قيرة الثانوية بجزيل الشكر والتقدير للسيد فراس عبدالرؤوف صاحب مسلخ الاعتماد زيتا جماعين، تقديرًا لجهوده المباركة ومبادرته الكريمة في تنظيف ساحات المدرسة باستخدام المعدات اللازمة، بما أسهم في تحسين مظهر المدرسة وتهيئة بيئة مدرسية نظيفة وآمنة لأبنائنا الطلبة.</p>
-        <p>والشكر موصول للأخوة في مجلس قروي قيرة ولأخينا السيد معتز الجبر.</p>
-
-        <div class="thanks-photos">
-          <img src="thanks-firas-1.jpg" alt="تنظيف ساحات مدرسة ذكور قيرة الثانوية بخرطوم المياه">
-          <img src="thanks-firas-2.jpg" alt="صهريج المياه المستخدم في تنظيف ساحات المدرسة">
-          <img src="thanks-firas-3.jpg" alt="فريق العمل أثناء تنظيف ساحة المدرسة">
-          <img src="thanks-firas-4.jpg" alt="صهريج المياه أثناء تعبئته لتنظيف المدرسة">
-        </div>
-
-        <p>إن هذه المبادرة تعكس روح الانتماء والمسؤولية المجتمعية، وتجسد أسمى صور التعاون والعطاء لخدمة المدرسة والمجتمع.</p>
-        <p class="thanks-sign">ودمتم شعلًا يُستضاء بكم جميعًا</p>
-      </div>
-
-      <div class="thanks-card reveal">
-        <h3>شكر وتقدير لشركة تنويرات الشروق</h3>
-        <p>بكل مشاعر الشكر والامتنان، تتقدم إدارة مدرسة ذكور قيرة الثانوية بجزيل الشكر والتقدير إلى شركة تنويرات الشروق لتبرعها بـ (11) مروحة للمدرسة، والتي ستسهم في توفير بيئة مدرسية أكثر راحة وملاءمة لطلبتنا ومعلمينا.</p>
-
-        <div class="thanks-photos">
-          <img src="thanks-shurooq-1.jpg" alt="شركة تنويرات الشروق للإضاءة">
-          <img src="thanks-shurooq-2.jpg" alt="المراوح المتبرع بها من شركة تنويرات الشروق">
-          <img src="thanks-shurooq-3.jpg" alt="تسليم المراوح المتبرع بها إلى المدرسة">
-        </div>
-
-        <p>إن هذه المبادرة الطيبة تعكس روح الانتماء والمسؤولية المجتمعية، وتجسد أجمل صور العطاء وخدمة المسيرة التعليمية.</p>
-        <p>بارك الله في عطائكم، وجزاكم الله خير الجزاء، وجعل ما قدمتموه في ميزان حسناتكم.</p>
-        <p class="thanks-sign">معًا ننمي العقول ونبني الأوطان...</p>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="tatreez-divider"></div>
 
 <!-- عن المدرسة -->
 <section id="about">
@@ -743,7 +711,6 @@
         <li><a href="#gallery">ألبوم الصور</a></li>
         <li><a href="#news">الأخبار</a></li>
         <li><a href="#announcements">الإعلانات</a></li>
-        <li><a href="#thanks">شكر وتبرعات</a></li>
         <li><a href="#about">عن المدرسة</a></li>
         <li><a href="#partners">شركاؤنا</a></li>
       </ul>
